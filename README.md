@@ -23,18 +23,19 @@ coding language to learn, and expand my skills at a steady pace.
 ### Problem Description
 
 [In your own words, what's broken or missing?]
+the project is using an outdated floater which poses as a security risk to pushing malicious codeto Github.
 
 ### Expected Behavior
 
-[What should happen?]
+Private data should be safe inside gitIgnore
 
 ### Current Behavior
 
-[What actually happens?]
+All code, inlcuding private data, is being added
 
 ### Affected Components
 
-[Which parts of the codebase are involved?]
+The files that contained the sensitive data and the outdates dependencies were affected the most.
 
 ---
 
@@ -46,9 +47,9 @@ coding language to learn, and expand my skills at a steady pace.
 
 ### Steps to Reproduce
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+1. Update the floater or any outdated material
+2. remove any sensitve data in Github and reupload the project.
+3. gitIgnore should be working properly
 
 ### Reproduction Evidence
 
