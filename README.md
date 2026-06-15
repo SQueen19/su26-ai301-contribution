@@ -53,21 +53,22 @@ The files that contained the sensitive data and the outdates dependencies were a
 
 ### Reproduction Evidence
 
-- **Commit showing reproduction:** [Link to commit in your fork]
+- **Commit showing reproduction:** https://github.com/SQueen19/crates.io
 - **Screenshots/logs:** [If applicable]
-- **My findings:** [What you discovered during reproduction]
+- **My findings:** the files/integration my be out of date.
 
 ---
 
 ## Solution Approach
 
 ### Analysis
-
-[Your analysis of the root cause - what's causing the issue?]
+[The root problem]
+Out of date dependencies
 
 ### Proposed Solution
 
 [High-level description of your fix approach]
+Rewrite the code for the syntax to me modernly accurate.
 
 ### Implementation Plan
 
