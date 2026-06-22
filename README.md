@@ -1,8 +1,8 @@
 # su26-ai301-contribution
 Weekly task for ai301
-# Contribution [#]: Keep action up to date in docs
+# Contribution 1: Keep action up to date in docs
 
-**Contribution Number:** [1 / 2 / 3]  
+**Contribution Number: 1**  
 **Student:** TF - Sydelle  
 **Issue:** :https://github.com/release-plz/release-plz/issues/2488  
 **Status:** [Phase I / Phase II / Phase III / Phase IV] [In Progress / Complete]
@@ -27,11 +27,11 @@ the project is using an outdated floater which poses as a security risk to pushi
 
 ### Expected Behavior
 
-Private data should be safe inside gitIgnore
+Documentation examples should show how to pin the action to a specific commit hash, so that the action version is immutable and cannot be silently updated or tampered with.
 
 ### Current Behavior
 
-All code, inlcuding private data, is being added
+The documentation uses floating version tags like release-plz/action@v0.5, which automatically resolve to the latest patch release. There is no warning in the primary quickstart examples that this poses a security risk.
 
 ### Affected Components
 
@@ -47,15 +47,15 @@ The files that contained the sensitive data and the outdates dependencies were a
 
 ### Steps to Reproduce
 
-1. Update the floater or any outdated material
-2. remove any sensitve data in Github and reupload the project.
+1. Navigate to the release-plz GitHub Action documentation (e.g., the Quickstart page).
+2. Observe that example workflow snippets reference the action as release-plz/action@v0.5 or similar floating tags.
 3. gitIgnore should be working properly
 
 ### Reproduction Evidence
 
 - **Commit showing reproduction:** https://github.com/SQueen19/crates.io
 - **Screenshots/logs:** [If applicable]
-- **My findings:** the files/integration my be out of date.
+- **My findings:** The documentation examples and the guidance on the security page are inconsistent — the security page recommends pinning to a commit hash, but other pages still show floating tags as the default examples.
 
 ---
 
@@ -63,35 +63,36 @@ The files that contained the sensitive data and the outdates dependencies were a
 
 ### Analysis
 [The root problem]
-Out of date dependencies
+The root problem is a documentation inconsistency. The project's own security page correctly identifies the risk of floating version tags and recommends pinning to a commit SHA, but this best practice is not reflected in the primary usage examples throughout the docs.
 
 ### Proposed Solution
 
 [High-level description of your fix approach]
-Rewrite the code for the syntax to me modernly accurate.
+Update the documentation examples to use a pinned commit hash (with the version noted in a comment) rather than a floating tag. This aligns the examples with the guidance already present on the security page and reduces risk for users who copy-paste from the docs without reading the security section.
 
 ### Implementation Plan
 
 Using UMPIRE framework (adapted):
 
-**Understand:** [Restate the problem]
+**Understand:** The docs show release-plz/action@v0.5 in examples, which is a floating tag. The security page explains this is a risk and recommends using a full commit SHA instead.
 
-**Match:** [What similar patterns/solutions exist in the codebase?]
+**Match:**  The security page already provides a correct pinned example (release-plz/action@63ab0c2746bedc448370bad4b0b3d536458398b0 # v0.5.50). The same pattern is used in the crates.io repository's own CI configuration. This is the model to follow.
 
 **Plan:** [Step-by-step implementation plan]
-1. [Modify file X to do Y]
-2. [Add function Z]
-3. [Update tests]
+Identify all documentation markdown files that contain GitHub Action workflow examples using floating tags.
+Replace floating tags with a pinned commit SHA, with the version noted in an inline comment for human readability.
+Verify the updated examples are consistent with the security page guidance.
 
-**Implement:** [Link to your branch/commits as you work]
 
-**Review:** [Self-review checklist - does it follow the project's contribution guidelines?]
+**Implement:** Changes are limited to markdown documentation files — no functional code changes required.
 
-**Evaluate:** [How will you verify it works?]
+**Review:**  Confirm the updated examples match the format already shown on the security page, and that no other doc pages still show unpinned tags.
+
+**Evaluate:** Success is verified by reading through the updated docs and confirming all action references use commit-pinned syntax.
 
 ---
 
-## Testing Strategy
+## Testing Strategy - Left blank as it's all N/A as a TF
 
 ### Unit Tests
 
@@ -156,10 +157,11 @@ Using UMPIRE framework (adapted):
 
 [Reflection on your process]
 
+I would look at all documentation pages more systematically from the start, rather than just the ones directly linked from the issue, to make sure I caught every instance of the floating tag pattern before beginning the fix.
 ---
 
 ## Resources Used
 
-- [Link to helpful documentation]
-- [Tutorial or Stack Overflow post that helped]
-- [GitHub issues or discussions that helped]
+- https://release-plz.dev/docs/github/security — Project's own security guidance page explaining the risk and recommended fix
+- https://github.com/release-plz/release-plz/issues/2488 — Original issue
+- https://github.com/rust-lang/crates.io/blob/7e52e11c5ddeb33db70f0000bbcdfb01e9b43b0d/.github/workflows/ci.yml#L30 — Real-world example of commit-pinned action reference used by crates.io
